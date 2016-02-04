@@ -22,6 +22,15 @@ class Optimizer(BaseOptimizer):
         self.runnable = True
         self.imgmin_path = self.context.config.IMGMIN_PATH
 
+        # All defaults are from imgmin unless noted otherwise
+        self.error_threshold = self.context.config.AUTO_ERROR_THRESHOLD or 1.0
+        self.color_density_ratio = self.context.config.AUTO_COLOR_DENSITY_RATIO or 0.11
+        self.min_unique_colors = self.context.config.AUTO_MIN_UNIQUE_COLORS or 4096
+        self.quality_out_max = self.context.config.AUTO_QUALITY_OUT_MAX or 100 # imgming default 95
+        self.quality_out_in = self.context.config.AUTO_QUALITY_OUT_IN or 95 # imgming default 70
+        self.quality_in_min = self.context.config.AUTO_QUALITY_IN_MIN or 82
+        self.max_steps = self.context.config.AUTO_MAX_STEPS or 5
+
         if not ( os.path.isfile(self.imgmin_path) ):
             logger.error("ERROR path '{0}' or '{1}' is not accessible".format(self.imgmin_path))
             self.runnable = False
@@ -38,7 +47,7 @@ class Optimizer(BaseOptimizer):
 
         if has_alpha == False:
             intermediary = output_file + '-intermediate'
-            input_image.save(intermediary, 'JPEG')
+            input_image.save(intermediary, 'JPEG', quality=100)
             input_file = intermediary
 
         command = '%s %s %s > /dev/null 2>&1' % (
