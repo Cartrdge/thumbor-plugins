@@ -23,13 +23,13 @@ class Optimizer(BaseOptimizer):
         self.imgmin_path = self.context.config.IMGMIN_PATH
 
         # All defaults are from imgmin unless noted otherwise
-        self.error_threshold = self.context.config.AUTO_ERROR_THRESHOLD or 1.0
-        self.color_density_ratio = self.context.config.AUTO_COLOR_DENSITY_RATIO or 0.11
-        self.min_unique_colors = self.context.config.AUTO_MIN_UNIQUE_COLORS or 4096
-        self.quality_out_max = self.context.config.AUTO_QUALITY_OUT_MAX or 100 # imgming default 95
-        self.quality_out_min = self.context.config.AUTO_QUALITY_OUT_MIN or 95 # imgming default 70
-        self.quality_in_min = self.context.config.AUTO_QUALITY_IN_MIN or 82
-        self.max_steps = self.context.config.AUTO_MAX_STEPS or 5
+        self.error_threshold = self.context.config.AUTO_ERROR_THRESHOLD or '1.0'
+        self.color_density_ratio = self.context.config.AUTO_COLOR_DENSITY_RATIO or '0.11'
+        self.min_unique_colors = self.context.config.AUTO_MIN_UNIQUE_COLORS or '4096'
+        self.quality_out_max = self.context.config.AUTO_QUALITY_OUT_MAX or '100' # imgming default 95
+        self.quality_out_min = self.context.config.AUTO_QUALITY_OUT_MIN or '95' # imgming default 70
+        self.quality_in_min = self.context.config.AUTO_QUALITY_IN_MIN or '82'
+        self.max_steps = self.context.config.AUTO_MAX_STEPS or '5'
 
         if not ( os.path.isfile(self.imgmin_path) ):
             logger.error("ERROR path '{0}' or '{1}' is not accessible".format(self.imgmin_path))
@@ -52,13 +52,13 @@ class Optimizer(BaseOptimizer):
 
         command = '%s %s %s > /dev/null 2>&1' % (
             self.imgmin_path,
-            ' --error-threshold ' + str(self.error_threshold),
-            ' --color-density-ratio ' + str(self.color_density_ratio),
-            ' --min-unique-colors ' + str(self.min_unique_colors),
-            ' --quality-out-max ' + str(self.quality_out_max),
-            ' --quality-out-min ' + str(self.quality_out_min),
-            ' --quality-in-min ' + str(self.quality_in_min),
-            ' --max-steps ' + str(self.max_steps),
+            ' --error-threshold ' + self.error_threshold,
+            ' --color-density-ratio ' + self.color_density_ratio,
+            ' --min-unique-colors ' + self.min_unique_colors,
+            ' --quality-out-max ' + self.quality_out_max,
+            ' --quality-out-min ' + self.quality_out_min,
+            ' --quality-in-min ' + self.quality_in_min,
+            ' --max-steps ' + self.max_steps,
             input_file,
             output_file,
         )
