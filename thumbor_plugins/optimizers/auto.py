@@ -50,15 +50,15 @@ class Optimizer(BaseOptimizer):
             input_image.save(intermediary, 'JPEG', quality=100)
             input_file = intermediary
 
-        command = '%s %s %s %s %s %s %s %s %s %s > /dev/null 2>&1' % (
+        command = '%s --error-threshold %s --color-density-ratio %s --min-unique-colors %s --quality-out-max %s --quality-out-min %s --quality-in-min %s --max-steps %s %s %s > /dev/null 2>&1' % (
             self.imgmin_path,
-            ' --error-threshold ' + self.error_threshold,
-            ' --color-density-ratio ' + self.color_density_ratio,
-            ' --min-unique-colors ' + self.min_unique_colors,
-            ' --quality-out-max ' + self.quality_out_max,
-            ' --quality-out-min ' + self.quality_out_min,
-            ' --quality-in-min ' + self.quality_in_min,
-            ' --max-steps ' + self.max_steps,
+            self.error_threshold,
+            self.color_density_ratio,
+            self.min_unique_colors,
+            self.quality_out_max,
+            self.quality_out_min,
+            self.quality_in_min,
+            self.max_steps,
             input_file,
             output_file,
         )
