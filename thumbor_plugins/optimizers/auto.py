@@ -52,13 +52,13 @@ class Optimizer(BaseOptimizer):
 
         command = '%s %s %s > /dev/null 2>&1' % (
             self.imgmin_path,
-            ' --error-threshold ' + self.error_threshold,
-            ' --color-density-ratio ' + self.color_density_ratio,
-            ' --min-unique-colors ' + self.min_unique_colors,
-            ' --quality-out-max ' + self.quality_out_max,
-            ' --quality-out-min ' + self.quality_out_min,
-            ' --quality-in-min ' + self.quality_in_min,
-            ' --max-steps ' + self.max_steps,
+            ' --error-threshold ' + str(self.error_threshold),
+            ' --color-density-ratio ' + str(self.color_density_ratio),
+            ' --min-unique-colors ' + str(self.min_unique_colors),
+            ' --quality-out-max ' + str(self.quality_out_max),
+            ' --quality-out-min ' + str(self.quality_out_min),
+            ' --quality-in-min ' + str(self.quality_in_min),
+            ' --max-steps ' + str(self.max_steps),
             input_file,
             output_file,
         )
