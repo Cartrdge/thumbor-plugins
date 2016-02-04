@@ -27,7 +27,7 @@ class Optimizer(BaseOptimizer):
         self.color_density_ratio = self.context.config.AUTO_COLOR_DENSITY_RATIO or 0.11
         self.min_unique_colors = self.context.config.AUTO_MIN_UNIQUE_COLORS or 4096
         self.quality_out_max = self.context.config.AUTO_QUALITY_OUT_MAX or 100 # imgming default 95
-        self.quality_out_in = self.context.config.AUTO_QUALITY_OUT_IN or 95 # imgming default 70
+        self.quality_out_min = self.context.config.AUTO_QUALITY_OUT_MIN or 95 # imgming default 70
         self.quality_in_min = self.context.config.AUTO_QUALITY_IN_MIN or 82
         self.max_steps = self.context.config.AUTO_MAX_STEPS or 5
 
